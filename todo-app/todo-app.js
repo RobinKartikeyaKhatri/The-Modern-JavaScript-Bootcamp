@@ -29,5 +29,8 @@ todos.forEach(function(todo) {
     document.querySelector("body").appendChild(p);
 });
 
-// You have 2 todos left (print this in a h2 tag)
-// Add a paragraph for each todo above (use text value for the paragraph)
+// Listen for new todo creation
+const addTodoButton = document.querySelector("button");
+addTodoButton.addEventListener("click", function(e) {
+    console.log("I am adding a new todo.");
+});

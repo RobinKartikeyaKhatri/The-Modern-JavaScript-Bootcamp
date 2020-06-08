@@ -9,21 +9,6 @@ const notes = [{
     body: "Get a new seat"
 }];
 
-// Query and remove
-// const p = document.querySelector("p");
-// p.remove();
-
-// Query all and remove
-const ps = document.querySelectorAll("p");
-
-ps.forEach(function (paragraph) {
-    paragraph.textContent = "******";
-    // console.log(paragraph.textContent);
-    // paragraph.remove();
+const button = document.querySelector("button").addEventListener("click", function(e) {
+    e.target.textContent = "The button was clicked";
 });
-
-
-// Add a new element
-const newParagraph = document.createElement("p");
-newParagraph.textContent = "This is a new element from JavaScript";
-document.querySelector("body").appendChild(newParagraph);

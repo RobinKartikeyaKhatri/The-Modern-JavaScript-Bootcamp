@@ -30,7 +30,7 @@ todos.forEach(function(todo) {
 });
 
 // Listen for new todo creation
-const addTodoButton = document.querySelector("button");
+const addTodoButton = document.querySelector("#add-todo");
 addTodoButton.addEventListener("click", function(e) {
     console.log("I am adding a new todo.");
 });

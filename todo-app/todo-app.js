@@ -34,3 +34,9 @@ const addTodoButton = document.querySelector("#add-todo");
 addTodoButton.addEventListener("click", function(e) {
     console.log("I am adding a new todo.");
 });
+
+// Listen for todo text change
+const addNewTodoTextInput = document.querySelector("#new-todo-text");
+addNewTodoTextInput.addEventListener("input", function(e) {
+    console.log(e.target.value);
+});

@@ -19,14 +19,6 @@ document.querySelector("#remove-all").addEventListener("click", function(e) {
     });
 });
 
-
-// -- Single --
-// p
-// #replace
-// .item
-
-// -- Multiple --
-// p#order
-// button.inventory
-// h1#title.application
-// h1.application#title
+document.querySelector("#search-text").addEventListener("input", function(e) {
+    console.log(e.target.value);
+});

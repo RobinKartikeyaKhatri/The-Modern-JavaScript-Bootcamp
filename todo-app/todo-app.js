@@ -19,6 +19,8 @@ const filters = {
     searchText: ""
 }
 
+
+// Function for filter todos
 const renderTodos = function(todos, filters) {
     const filteredTodos = todos.filter(function(todo) {
         return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
@@ -55,6 +57,7 @@ addNewTodoTextInput.addEventListener("input", function(e) {
    console.log(e.target.value); 
 });
 
+// Listen for filter todos search input text
 const searchTodoTextInput = document.querySelector("#search-text");
 searchTodoTextInput.addEventListener("input", function(e) {
     filters.searchText = e.target.value;

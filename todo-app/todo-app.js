@@ -45,21 +45,26 @@ const renderTodos = function(todos, filters) {
 
 renderTodos(todos, filters);
 
-// Listen for new todo creation
-const addTodoButton = document.querySelector("#add-todo");
-addTodoButton.addEventListener("click", function(e) {
-    console.log("I am adding a new todo.");
-});
-
-// Listen for todo text change
-const addNewTodoTextInput = document.querySelector("#new-todo-text");
-addNewTodoTextInput.addEventListener("input", function(e) {
-   console.log(e.target.value); 
-});
-
 // Listen for filter todos search input text
 const searchTodoTextInput = document.querySelector("#search-text");
 searchTodoTextInput.addEventListener("input", function(e) {
     filters.searchText = e.target.value;
     renderTodos(todos, filters);
-})
+});
+
+// Challenge
+    // 1. Create a form with a single input for todo text
+    // 2. Setup an submit handler and cancel the default action
+    // 3. Add a new item to the todos array with that text data (completed value of false)
+    // 4. Render the application
+
+document.querySelector("#new-todo").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const todo = e.target.elements.text.value;
+    todos.push({
+        text: todo,
+        completed: false
+    });
+    renderTodos(todos, filters);
+    e.target.elements.text.value = "";
+});

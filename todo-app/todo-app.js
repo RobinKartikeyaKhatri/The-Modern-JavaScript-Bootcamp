@@ -16,14 +16,24 @@ const todos = [{
 }];
 
 const filters = {
-    searchText: ""
+    searchText: "",
+    hideCompleted: false
 }
 
 
 // Function for filter todos
 const renderTodos = function(todos, filters) {
-    const filteredTodos = todos.filter(function(todo) {
+    let filteredTodos = todos.filter(function(todo) {
         return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+    });
+
+    filteredTodos = filteredTodos.filter(function(todo) {
+        // return !filters.hideCompleted || !todo.completed
+        if (filters.hideCompleted) {
+            return !todo.completed;
+        } else {
+            return true;
+        }
     });
 
     const incompleteTodos = filteredTodos.filter(function (todo) {
@@ -52,12 +62,6 @@ searchTodoTextInput.addEventListener("input", function(e) {
     renderTodos(todos, filters);
 });
 
-// Challenge
-    // 1. Create a form with a single input for todo text
-    // 2. Setup an submit handler and cancel the default action
-    // 3. Add a new item to the todos array with that text data (completed value of false)
-    // 4. Render the application
-
 document.querySelector("#new-todo").addEventListener("submit", function(e) {
     e.preventDefault();
     const todo = e.target.elements.text.value;
@@ -67,4 +71,15 @@ document.querySelector("#new-todo").addEventListener("submit", function(e) {
     });
     renderTodos(todos, filters);
     e.target.elements.text.value = "";
+});
+
+// Challenge
+    // 1. Create a checkbox and setup event listener -> "Hide completed"
+    // 2. Create new hideCompleted filter (default false)
+    // 3. Update hideCompleted an rerender list on checkbox change
+    // 4. Setup renderTodos to remove completed items
+
+document.querySelector("#hide-completed").addEventListener("change", function(e) {
+    filters.hideCompleted = e.target.checked;
+    renderTodos(todos, filters);
 });

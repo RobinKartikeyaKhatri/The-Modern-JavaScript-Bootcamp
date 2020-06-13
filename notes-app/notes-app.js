@@ -13,6 +13,23 @@ const filters = {
     searchText: ""
 }
 
+// const user = {
+//     name: "Robin",
+//     age: 34
+// }
+
+// const userJSON = JSON.stringify(user);
+
+// localStorage.setItem("user", userJSON);
+
+// console.log(localStorage.getItem("user"));
+
+const userJSON = localStorage.getItem("user");
+
+const user = JSON.parse(userJSON);
+
+console.log(`${user.name} is ${user.age} years old`);
+
 const renderNotes = function(notes, filters) {
     const filteredNotes = notes.filter(function(note) {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase());

@@ -1,23 +1,19 @@
-const todos = [{
-    text: "Order cat food",
-    completed: false
-}, {
-    text: "Clean kitchen",
-    completed: true
-}, {
-    text: "Buy food",
-    completed: true
-}, {
-    text: "Do work",
-    completed: false
-}, {
-    text: "Exercise",
-    completed: true 
-}];
+// Challenge
+    // 1. Delete dummy data
+    // 2. Read and parse the data when the app starts up
+    // 3. Stringify and write the data when new data is added
+
+let todos = [];
 
 const filters = {
     searchText: "",
     hideCompleted: false
+}
+
+const todosJSON = localStorage.getItem("todos");
+
+if (todosJSON !== null) {
+    todos = JSON.parse(todosJSON);
 }
 
 
@@ -69,15 +65,10 @@ document.querySelector("#new-todo").addEventListener("submit", function(e) {
         text: todo,
         completed: false
     });
+    localStorage.setItem("todos", JSON.stringify(todos));
     renderTodos(todos, filters);
     e.target.elements.text.value = "";
 });
-
-// Challenge
-    // 1. Create a checkbox and setup event listener -> "Hide completed"
-    // 2. Create new hideCompleted filter (default false)
-    // 3. Update hideCompleted an rerender list on checkbox change
-    // 4. Setup renderTodos to remove completed items
 
 document.querySelector("#hide-completed").addEventListener("change", function(e) {
     filters.hideCompleted = e.target.checked;

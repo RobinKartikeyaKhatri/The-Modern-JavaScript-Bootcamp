@@ -1,34 +1,15 @@
-const notes = [{
-    title: "my next trip",
-    body: "I would like to go to Spain"
-}, {
-    title: "Habbits to work on",
-    body: "Exercise. Eating a bit better."
-}, {
-    title: "Office modification",
-    body: "Get a new seat"
-}];
+let notes = [];
 
 const filters = {
     searchText: ""
 }
 
-// const user = {
-//     name: "Robin",
-//     age: 34
-// }
+// Check for existing saved data
+const notesJSON = localStorage.getItem("notes");
 
-// const userJSON = JSON.stringify(user);
-
-// localStorage.setItem("user", userJSON);
-
-// console.log(localStorage.getItem("user"));
-
-const userJSON = localStorage.getItem("user");
-
-const user = JSON.parse(userJSON);
-
-console.log(`${user.name} is ${user.age} years old`);
+if (notesJSON !== null) {
+   notes = JSON.parse(notesJSON) 
+}
 
 const renderNotes = function(notes, filters) {
     const filteredNotes = notes.filter(function(note) {
@@ -39,15 +20,26 @@ const renderNotes = function(notes, filters) {
     
     filteredNotes.forEach(function(note) {
         const noteElement = document.createElement("p");
-        noteElement.textContent = note.title;
+
+        if (note.title.length > 0) {
+            noteElement.textContent = note.title;
+        } else {
+            noteElement.textContent = "Unnamed note"
+        }
+        
         document.querySelector("#notes").appendChild(noteElement);
     });
 }
 
 renderNotes(notes, filters);
 
-const button = document.querySelector("#create-note").addEventListener("click", function(e) {
-    e.target.textContent = "The button was clicked";
+document.querySelector("#create-note").addEventListener("click", function(e) {
+    notes.push({
+        title: "",
+        body: ""
+    });
+    localStorage.setItem("notes", JSON.stringify(notes));
+    renderNotes(notes, filters);
 });
 
 document.querySelector("#search-text").addEventListener("input", function(e) {

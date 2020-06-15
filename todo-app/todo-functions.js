@@ -31,6 +31,8 @@ const renderTodos = function(todos, filters) {
         }
     });
 
+    // debugger;
+
     const incompleteTodos = filteredTodos.filter(function (todo) {
         return !todo.completed
     });

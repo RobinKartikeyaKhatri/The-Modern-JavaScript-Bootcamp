@@ -3,13 +3,7 @@ let todos = getSavedTodos();
 const filters = {
     searchText: "",
     hideCompleted: false
-}
-
-
-
-
-// Function for filter todos
-
+};
 
 renderTodos(todos, filters);
 

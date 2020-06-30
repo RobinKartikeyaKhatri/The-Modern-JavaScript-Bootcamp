@@ -16,9 +16,9 @@ searchTodoTextInput.addEventListener("input", function(e) {
 
 document.querySelector("#new-todo").addEventListener("submit", function(e) {
     e.preventDefault();
-    const todo = e.target.elements.text.value;
     todos.push({
-        text: todo,
+        id: uuidv4(),
+        text: e.target.elements.text.value,
         completed: false
     });
     saveTodos(todos);
